@@ -14,7 +14,10 @@ COPY . .
 RUN yarn build
 RUN rm -rf ./src
 RUN rm -rf ./tsconfig.json
+
 RUN mkdir -p /tmp
+RUN mkdir -p /apps/src
+RUN ln -s ./dist ./src
 
 EXPOSE 80
 ENTRYPOINT [ "yarn", "production" ]
