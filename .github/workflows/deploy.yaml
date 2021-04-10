@@ -1,0 +1,17 @@
+name: Deployment
+
+on:
+    push:
+        branches: [main]
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: self-hosted
+
+        steps:
+            - uses: actions/checkout@v2
+            - name: Start Docker-Compose
+              run: |
+                  ./deploy down
+                  ./deploy up
