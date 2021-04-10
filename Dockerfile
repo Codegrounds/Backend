@@ -2,6 +2,8 @@ FROM node:14 as development
 WORKDIR /app
 
 COPY . .
+RUN mkdir -p /tmp
+
 EXPOSE 80
 ENTRYPOINT [ "yarn", "development" ]
 
@@ -12,6 +14,7 @@ COPY . .
 RUN yarn build
 RUN rm -rf ./src
 RUN rm -rf ./tsconfig.json
+RUN mkdir -p /tmp
 
 EXPOSE 80
 ENTRYPOINT [ "yarn", "production" ]

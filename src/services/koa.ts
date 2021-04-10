@@ -4,6 +4,8 @@ import Logger from 'koa-logger';
 import Router from 'koa-router';
 import Parser from 'koa-bodyparser';
 
+import { Runner } from 'codegrounds/controllers'
+
 export const start = async () => {
 	const app = new Koa()
 	app.use(Json({
@@ -13,6 +15,8 @@ export const start = async () => {
 	app.use(Parser())
 	app.use(Logger())
 	const router = new Router();
+	router.use('/runner', Runner.default.routes())
+	router.use('/runner', Runner.default.allowedMethods())
 
 	app.use(router.routes())
 	app.use(router.allowedMethods())
