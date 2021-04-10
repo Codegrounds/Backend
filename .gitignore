@@ -1,0 +1,9 @@
+# Yarn PNP
+/.yarn/*
+!/.yarn/releases
+!/.yarn/plugins
+!/.yarn/cache
+!/.yarn/sdks
+
+# Project
+dist/

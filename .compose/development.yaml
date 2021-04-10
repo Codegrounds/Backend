@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  server:
+    build:
+      context: ..
+      target: development
+    container_name: codegrounds_backend 
+    networks:
+      - overlay
+    volumes:
+      - ../:/app
+    ports:
+      - 1000:80
+    environment:
+      NODE_ENV: development
+      POSTGRES_PASSWORD: ${DATABASE_PWD}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_DB: ${DATABASE_NAME}
+  database:
+    image: postgres
+    container_name: codegrounds_database
+    networks:
+      - overlay
+    volumes:
+      - database_dev:/var/lib/postgresql/data
+    ports:
+      - 1001:5432
+    environment:
+      POSTGRES_PASSWORD: ${DATABASE_PWD}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_DB: ${DATABASE_NAME}
+    logging:
+      driver: none
+networks:
+  overlay:
+    driver: overlay
+volumes:
+  database_dev:

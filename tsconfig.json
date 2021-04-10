@@ -1,0 +1,33 @@
+{
+	"compilerOptions": {
+		// Compile Options
+		"target": "ES2020",
+		"module": "CommonJS",
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		
+		// Directories
+		"outDir": "./dist",
+		"rootDir": "./src",
+		
+		// Optionals
+		"incremental": true,
+		"sourceMap": true,
+		
+		// Stylistic
+		"strict": true,
+		"removeComments": true,
+		"forceConsistentCasingInFileNames": true,
+		
+		// Path Aliases
+		"baseUrl": "./src",
+		"paths": {
+			"*": [
+				"typings/*"
+			]
+		}
+	}
+}
