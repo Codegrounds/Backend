@@ -1,5 +1,5 @@
-import { Context } from "koa";
-import Router from "koa-router";
+import { Context } from 'koa';
+import Router from 'koa-router';
 import { writeFile } from 'fs/promises';
 import { exec, PromiseResult } from 'child-process-promise';
 
@@ -7,35 +7,43 @@ const router = new Router()
 
 router.post('/javascript', async (ctx: Context) => {
 	if (ctx.request.body && Object.keys(ctx.request.body).length > 0) {
-		const body: {
-			udid: string;
-			data: string;
-		} = ctx.request.body
+		const { transaction_id, code_data } = ctx.request.body;
 
 		try {
-			await writeFile(`/tmp/${body.udid}.js`, Buffer.from(body.data))
-			let result = await exec(`node /tmp/${body.udid}.js`, { capture: [ 'stdout', 'stderr' ]})
-			ctx.status = 200
-				ctx.body = {
-					message: 'Successful',
-					date: new Date().toLocaleString(),
-					data: {
-						stdout: result.stdout.toString(),
-						stderr: result.stderr.toString()
-					}
-				}
+			await writeFile(`/tmp/${transaction_id}.js`, Buffer.from(code_data, 'utf8'))
 		} catch (err) {
-			console.log(`Runner Error [${body.udid}]: ${err}`)
+			ctx.status = 500
+			ctx.body = {
+				message: `Internal Server Error: ${err}`,
+				date: new Date().toLocaleString()
+			}
+
+			return
+		}
+
+		await exec(`node /tmp/${transaction_id}.js`, { capture: ['stdout', 'stderr'] }).then((result: PromiseResult<string>) => {
 			ctx.status = 200
 			ctx.body = {
-				message: 'Successful',
+				message: 'Request Successful',
 				date: new Date().toLocaleString(),
 				data: {
-					stdout: null,
-					stderr: err.stderr || err
+					exitCode: result.childProcess.exitCode,
+					stdOutput: result.stdout || 'Unavailable',
+					stdError: result.stderr || 'Unavailable'
 				}
 			}
-		}
+		}).catch((result: PromiseResult<string>) => {
+			ctx.status = 200
+			ctx.body = {
+				message: 'Request Successful',
+				date: new Date().toLocaleString(),
+				data: {
+					exitCode: result.childProcess.exitCode,
+					stdOutput: result.stdout || 'Unavailable',
+					stdError: result.stderr || 'Unavailable'
+				}
+			}
+		})
 	} else {
 		ctx.status = 422
 		ctx.body = {
