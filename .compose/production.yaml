@@ -8,10 +8,8 @@ services:
     container_name: codegrounds_backend
     networks:
       - overlay
-    volumes:
-      - ../:/app
     ports:
-      - 1000:80
+      - 9000:80
     environment:
       NODE_ENV: production 
       POSTGRES_PASSWORD: ${DATABASE_PWD}
