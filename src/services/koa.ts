@@ -1,5 +1,6 @@
 import Koa from 'koa';
 import Json from 'koa-json';
+import Cors from '@koa/cors';
 import Logger from 'koa-logger';
 import Router from 'koa-router';
 import Parser from 'koa-bodyparser';
@@ -8,10 +9,8 @@ import { Runner } from 'codegrounds/controllers'
 
 export const start = async () => {
 	const app = new Koa()
-	app.use(Json({
-		spaces: 4
-	}))
-
+	app.use(Cors())
+	app.use(Json({ spaces: 4 }))
 	app.use(Parser())
 	app.use(Logger())
 	const router = new Router();

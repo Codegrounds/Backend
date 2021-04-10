@@ -9,12 +9,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@codegrounds/backend@workspace:."
   dependencies:
+    "@koa/cors": ^3.1.0
     "@types/child-process-promise": ^2.2.1
     "@types/koa": ^2.13.1
     "@types/koa-bodyparser": ^4.3.0
     "@types/koa-json": ^2.0.18
     "@types/koa-logger": ^3.1.1
     "@types/koa-router": ^7.4.1
+    "@types/koa__cors": ^3.0.2
     "@types/node": ^14.14.35
     "@types/node-fetch": ^2.5.8
     child-process-promise: ^2.2.1
@@ -32,6 +34,15 @@ __metadata:
     typescript: ^4.2.3
   languageName: unknown
   linkType: soft
+
+"@koa/cors@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "@koa/cors@npm:3.1.0"
+  dependencies:
+    vary: ^1.1.2
+  checksum: 066c440bce48588a7fb182b6a3a811213443ca103d7694a80917d1300fc72034d79cf22b49d1761376d56a8c78ffc156b96f0465e399a4d39161456469a963aa
+  languageName: node
+  linkType: hard
 
 "@npmcli/move-file@npm:^1.0.1":
   version: 1.1.2
@@ -215,6 +226,15 @@ __metadata:
     "@types/koa-compose": "*"
     "@types/node": "*"
   checksum: ba0ccaecc7132b6bdbf83da2f40456f935d04e2eb4270b2c69fc79eee5ab1dc06c9fa08525b6e4bebacc9432cbab918a00102a5f92f210a7c7e50c7b035fca78
+  languageName: node
+  linkType: hard
+
+"@types/koa__cors@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "@types/koa__cors@npm:3.0.2"
+  dependencies:
+    "@types/koa": "*"
+  checksum: f481d9529572b95e460aa2680bc6a9c49fcd70208b697d44387af71b5ca77b654dcd7df96f9758abe6b27cb0afed424ae47ab7184a047f73d879d253db1eb030
   languageName: node
   linkType: hard
 

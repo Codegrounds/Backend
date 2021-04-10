@@ -37,12 +37,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {
           "packageLocation": "./",
           "packageDependencies": [
+            ["@koa/cors", "npm:3.1.0"],
             ["@types/child-process-promise", "npm:2.2.1"],
             ["@types/koa", "npm:2.13.1"],
             ["@types/koa-bodyparser", "npm:4.3.0"],
             ["@types/koa-json", "npm:2.0.18"],
             ["@types/koa-logger", "npm:3.1.1"],
             ["@types/koa-router", "npm:7.4.1"],
+            ["@types/koa__cors", "npm:3.0.2"],
             ["@types/node", "npm:14.14.37"],
             ["@types/node-fetch", "npm:2.5.10"],
             ["child-process-promise", "npm:2.2.1"],
@@ -67,12 +69,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",
           "packageDependencies": [
             ["@codegrounds/backend", "workspace:."],
+            ["@koa/cors", "npm:3.1.0"],
             ["@types/child-process-promise", "npm:2.2.1"],
             ["@types/koa", "npm:2.13.1"],
             ["@types/koa-bodyparser", "npm:4.3.0"],
             ["@types/koa-json", "npm:2.0.18"],
             ["@types/koa-logger", "npm:3.1.1"],
             ["@types/koa-router", "npm:7.4.1"],
+            ["@types/koa__cors", "npm:3.0.2"],
             ["@types/node", "npm:14.14.37"],
             ["@types/node-fetch", "npm:2.5.10"],
             ["child-process-promise", "npm:2.2.1"],
@@ -90,6 +94,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["typescript", "patch:typescript@npm%3A4.2.4#builtin<compat/typescript>::version=4.2.4&hash=a45b0e"]
           ],
           "linkType": "SOFT",
+        }]
+      ]],
+      ["@koa/cors", [
+        ["npm:3.1.0", {
+          "packageLocation": "./.yarn/cache/@koa-cors-npm-3.1.0-77098c22e6-066c440bce.zip/node_modules/@koa/cors/",
+          "packageDependencies": [
+            ["@koa/cors", "npm:3.1.0"],
+            ["vary", "npm:1.1.2"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@npmcli/move-file", [
@@ -298,6 +312,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-koa-router-npm-7.4.1-88ee027ad0-dc57ded1d1.zip/node_modules/@types/koa-router/",
           "packageDependencies": [
             ["@types/koa-router", "npm:7.4.1"],
+            ["@types/koa", "npm:2.13.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/koa__cors", [
+        ["npm:3.0.2", {
+          "packageLocation": "./.yarn/cache/@types-koa__cors-npm-3.0.2-025aaf3a31-f481d95295.zip/node_modules/@types/koa__cors/",
+          "packageDependencies": [
+            ["@types/koa__cors", "npm:3.0.2"],
             ["@types/koa", "npm:2.13.1"]
           ],
           "linkType": "HARD",
