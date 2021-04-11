@@ -27,6 +27,7 @@ router.post('/javascript', async (ctx: Context) => {
 				message: 'Request Successful',
 				date: new Date().toLocaleString(),
 				data: {
+					transactionId: transaction_id,
 					exitCode: result.childProcess.exitCode,
 					stdOutput: result.stdout || 'Unavailable',
 					stdError: result.stderr || 'Unavailable'
@@ -38,6 +39,7 @@ router.post('/javascript', async (ctx: Context) => {
 				message: 'Request Successful',
 				date: new Date().toLocaleString(),
 				data: {
+					transactionId: transaction_id,
 					exitCode: result.childProcess.exitCode,
 					stdOutput: result.stdout || 'Unavailable',
 					stdError: result.stderr || 'Unavailable'
