@@ -51,7 +51,25 @@ router.get('/', async (ctx: Context) => {
 	}
 })
 
-router.post('/new', async (ctx: Context) => {
+router.delete('/', async (ctx: Context) => {
+	if (ctx.request.body && Object.keys(ctx.request.body).length > 0) {
+		const { lesson_id } = ctx.request.body;
+		await getRepository(Lesson).delete({ lesson_id })
+		ctx.status = 200
+		ctx.body = {
+			message: 'Successful: Deleted',
+			date: new Date().toLocaleString()
+		}
+	} else {
+		ctx.status = 422
+		ctx.body = {
+			message: 'Unprocessable Entity: Missing Data',
+			date: new Date().toLocaleString()
+		}
+	}
+})
+
+router.post('/', async (ctx: Context) => {
 	if (ctx.request.body && Object.keys(ctx.request.body).length > 0) {
 		const { lesson_id, name, type, chapter, markdown, shell_code, function_name, validation_code, expected_output } = ctx.request.body;
 		const result = await getRepository(Lesson).findOne({ lesson_id })
