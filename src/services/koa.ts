@@ -12,11 +12,15 @@ export const start = async () => {
 	app.proxy = true
 	app.keys = [process.env.POSTGRES_PASSWORD!]
 
-	app.use(Cors({ origin: 'http://codegrounds.tale.me:3000', credentials: true, allowMethods: ['POST', 'OPTIONS'], exposeHeaders: ['set-cookie'] }))
+	const origin = process.env.NODE_ENV === 'development' ? 'http://codegrounds.atale.me:3000' : 'https://codegrounds.atale.me'
+	const security = process.env.NODE_ENV === 'development' ? false : true
+
+	app.use(Cors({ origin: origin, credentials: true, allowMethods: ['POST', 'OPTIONS'], exposeHeaders: ['set-cookie'] }))
 	app.use(Json({ spaces: 4 }))
 	app.use(Parser())
 	app.use(Logger())
 	app.use(Session({
+		secure: security,
 		sameSite: false 
 	}, app))
 
