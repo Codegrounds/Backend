@@ -70,6 +70,12 @@ router.post('/test', async (ctx: Context) => {
 			message: 'Signed In',
 			date: new Date().toLocaleString()
 		}
+	} else {
+		ctx.status = 200
+		ctx.body = {
+			message: 'Not Signed In',
+			date: new Date().toLocaleString()
+		}
 	}
 })
 
