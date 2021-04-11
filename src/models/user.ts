@@ -19,7 +19,7 @@ export class User {
 	code_saves!: [{ lesson_id: string; code_data: string; }];
 
 	@Column('simple-json', { nullable: true })
-	completion_progress!: [{ lesson_id: string; status: string; }];
+	completion_progress!: [{ lesson_id: string; status: string; code_data: string; }];
 
 	generatePassword(password: BinaryLike): void {
 		this.password_salt = randomBytes(16).toString('hex');
