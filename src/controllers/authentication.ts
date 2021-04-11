@@ -86,6 +86,7 @@ router.post('/login', async (ctx: Context) => {
 		if (lookup) {
 			if (lookup.validatePassword(password)) {
 				ctx.session!.loggedIn = true
+				ctx.session!.lookup_id = lookup.database_id
 				ctx.status = 200
 				ctx.body = {
 					message: 'Successful: Authorized',

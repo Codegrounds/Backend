@@ -4,7 +4,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class User {
 	@PrimaryGeneratedColumn('uuid')
-	private database_id!: number;
+	database_id!: number;
 
 	@Column({ nullable: false })
 	private password_salt!: string;

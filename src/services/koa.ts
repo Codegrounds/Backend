@@ -5,7 +5,7 @@ import Logger from 'koa-logger';
 import Router from 'koa-router';
 import Session from 'koa-session';
 import Parser from 'koa-bodyparser';
-import { Authentication, Lesson, Runner, Validate } from 'codegrounds/controllers'
+import { Authentication, Editor, Lesson, Runner, Validate } from 'codegrounds/controllers'
 
 export const start = async () => {
 	const app = new Koa()
@@ -17,7 +17,7 @@ export const start = async () => {
 	app.use(Parser())
 	app.use(Logger())
 	app.use(Session({
-		secure: true,
+		secure: false,
 		sameSite: false
 	}, app))
 
@@ -25,6 +25,9 @@ export const start = async () => {
 
 	router.use('/authentication', Authentication.default.routes())
 	router.use('/authentication', Authentication.default.allowedMethods())
+
+	router.use('/editor', Editor.default.routes())
+	router.use('/editor', Editor.default.allowedMethods())
 
 	router.use('/lesson', Lesson.default.routes())
 	router.use('/lesson', Lesson.default.allowedMethods())
