@@ -1,0 +1,26 @@
+function main() {
+	// Assign integerValue to the integer 5
+	let integerValue =
+
+	// Assign stringValue to the value 'Hello World'
+	let stringValue =
+
+	// Assign booleanValue to return true
+	let booleanValue =
+
+	// Write an if statement that checks if integerValue is greater than 3.
+	// If integerValue is greater than 3, set doubleValue to 3.6
+	
+	let doubleValue; // don't touch this line
+	
+	if (/* logic here */) {
+		doubleValue =
+	}
+
+	return {
+		integerValue,
+		stringValue,
+		testingValue,
+		doubleValue
+	}
+}
