@@ -23,7 +23,6 @@ router.get('/save', async (ctx: Context) => {
 			let exists = false
 			let valueIndex = 0
 			lookup.code_saves.forEach((value, index) => {
-				console.log(value.lesson_id)
 				if (!exists && value.lesson_id === id!.toString()) {
 					exists = true
 					valueIndex = index
