@@ -1,6 +1,6 @@
 import { Context } from 'koa';
 import Router from 'koa-router';
-import { writeFile } from 'fs/promises';
+import { unlink, writeFile } from 'fs/promises';
 import { exec, PromiseResult } from 'child-process-promise';
 import { getRepository } from 'typeorm';
 import { Lesson } from 'codegrounds/models';
@@ -106,6 +106,9 @@ router.post('/javascript', async (ctx: Context) => {
 					stdError: result.stderr || 'Unavailable'
 				}
 			}
+		}).then(async () => {
+			await unlink(`/tmp/${transaction_id}.js`)
+			await unlink(`/tmp/${transaction_id}-validation.js`)
 		})
 	} else {
 		ctx.status = 422

@@ -1,6 +1,6 @@
 import { Context } from 'koa';
 import Router from 'koa-router';
-import { writeFile } from 'fs/promises';
+import { unlink, writeFile } from 'fs/promises';
 import { exec, PromiseResult } from 'child-process-promise';
 
 const router = new Router()
@@ -45,6 +45,8 @@ router.post('/javascript', async (ctx: Context) => {
 					stdError: result.stderr || 'Unavailable'
 				}
 			}
+		}).then(async () => {
+			await unlink(`/tmp/${transaction_id}.js`)
 		})
 	} else {
 		ctx.status = 422
