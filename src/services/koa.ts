@@ -12,7 +12,7 @@ export const start = async () => {
 	app.proxy = true
 	app.keys = [process.env.POSTGRES_PASSWORD!]
 
-	app.use(Cors({ origin: 'https://codegrounds-frontend.vercel.app', credentials: true, allowMethods: ['POST', 'OPTIONS'], exposeHeaders: ['set-cookie'] }))
+	app.use(Cors({ origin: 'http://codegrounds.tale.me:3000', credentials: true, allowMethods: ['POST', 'OPTIONS'], exposeHeaders: ['set-cookie'] }))
 	app.use(Json({ spaces: 4 }))
 	app.use(Parser())
 	app.use(Logger())
