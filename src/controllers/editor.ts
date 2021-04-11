@@ -22,6 +22,14 @@ router.get('/save', async (ctx: Context) => {
 		if (lookup) {
 			let exists = false
 			let valueIndex = 0
+
+			if (!lookup.code_saves) {
+				lookup.code_saves = [{
+					code_data: '',
+					lesson_id: id!.toString()
+				}]
+			}
+
 			lookup.code_saves.forEach((value, index) => {
 				if (!exists && value.lesson_id === id!.toString()) {
 					exists = true
@@ -156,6 +164,15 @@ router.get('/status', async (ctx: Context) => {
 		if (lookup) {
 			let exists = false
 			let valueIndex = 0
+
+			if (!lookup.completion_progress) {
+				lookup.completion_progress = [{
+					status: 'not_started',
+					code_data: '',
+					lesson_id: id!.toString()
+				}]
+			}
+
 			lookup.completion_progress.forEach((value, index) => {
 				if (!exists && value.lesson_id === id!.toString()) {
 					exists = true
