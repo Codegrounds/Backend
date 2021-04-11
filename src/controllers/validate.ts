@@ -53,7 +53,7 @@ router.post('/javascript', async (ctx: Context) => {
 			return
 		}
 
-		await exec(`node /tmp/${transaction_id}-validation.js`, { capture: ['stdout', 'stderr'] }).then((result: PromiseResult<string>) => {
+		await exec(`node /tmp/${transaction_id}-validation.js`, { capture: ['stdout', 'stderr'], timeout: 10000 }).then((result: PromiseResult<string>) => {
 			if (result.stdout) {
 				const validateArray = result.stdout.split(/\n/).filter(Boolean)
 				if (arraysEqual(validateArray, validationArray)) {
