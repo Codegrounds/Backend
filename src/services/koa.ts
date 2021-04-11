@@ -3,18 +3,29 @@ import Json from 'koa-json';
 import Cors from '@koa/cors';
 import Logger from 'koa-logger';
 import Router from 'koa-router';
+import Session from 'koa-session';
 import Parser from 'koa-bodyparser';
-import { Lesson, Runner, Validate } from 'codegrounds/controllers'
+import { Authentication, Lesson, Runner, Validate } from 'codegrounds/controllers'
 
 export const start = async () => {
 	const app = new Koa()
-	app.use(Cors({
-		origin: '*'
-	}))
+	app.proxy = true
+	app.keys = [process.env.POSTGRES_PASSWORD!]
+
+	app.use(Cors({ origin: 'http://codegrounds.tale.me:3000', credentials: true, allowMethods: ['POST', 'OPTIONS'], exposeHeaders: ['set-cookie'] }))
 	app.use(Json({ spaces: 4 }))
 	app.use(Parser())
 	app.use(Logger())
+	app.use(Session({
+		secure: false,
+		sameSite: false,
+		httpOnly: false
+	}, app))
+
 	const router = new Router();
+
+	router.use('/authentication', Authentication.default.routes())
+	router.use('/authentication', Authentication.default.allowedMethods())
 
 	router.use('/lesson', Lesson.default.routes())
 	router.use('/lesson', Lesson.default.allowedMethods())

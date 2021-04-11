@@ -1,5 +1,5 @@
 import { createConnection } from 'typeorm';
-import { Lesson } from 'codegrounds/models';
+import { Lesson, User } from 'codegrounds/models';
 
 export const start = async () => {
 	try {
@@ -11,7 +11,7 @@ export const start = async () => {
 			database: process.env.POSTGRES_DB,
 			synchronize: true,
 			logging: false,
-			entities: [Lesson]
+			entities: [Lesson, User]
 		})
 		console.info('ORM connected to database')
 	} catch (err) {
