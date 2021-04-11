@@ -5,6 +5,40 @@ import { getConnection, getRepository } from 'typeorm';
 
 const router = new Router()
 
+router.get('/', async (ctx: Context) => {
+	if (!ctx.request.query.id) {
+		ctx.status = 422
+		ctx.body = {
+			message: 'Unprocessable Entity: Missing Data',
+			date: new Date().toLocaleString()
+		}
+	} else {
+		const lookup = await getRepository(Lesson).findOne({ lesson_id: ctx.request.query.id.toString() })
+		if (lookup) {
+			ctx.status = 200
+			ctx.body = {
+				message: 'Successful: Lesson Found',
+				date: new Date().toLocaleString(),
+				data: {
+					lesson_id: lookup.lesson_id,
+					name: lookup.name,
+					chapter: lookup.chapter,
+					type: lookup.type,
+					markdown: lookup.markdown,
+					shell_code: lookup.shell_code,
+					expected_output: lookup.expected_output
+				}
+			}
+		} else {
+			ctx.status = 404
+			ctx.body = {
+				message: 'Not Found: Lesson Missing',
+				date: new Date().toLocaleString()
+			}
+		}
+	}
+})
+
 router.post('/new', async (ctx: Context) => {
 	if (ctx.request.body && Object.keys(ctx.request.body).length > 0) {
 		const { lesson_id, name, type, chapter, markdown, shell_code, function_name, validation_code, expected_output } = ctx.request.body;
