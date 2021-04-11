@@ -63,6 +63,7 @@ router.post('/javascript', async (ctx: Context) => {
 						date: new Date().toLocaleString(),
 						data: {
 							validation: true,
+							validationInfo: validateArray,
 							exitCode: result.childProcess.exitCode,
 							stdOutput: result.stdout || 'Unavailable',
 							stdError: result.stderr || 'Unavailable'
@@ -75,6 +76,7 @@ router.post('/javascript', async (ctx: Context) => {
 						date: new Date().toLocaleString(),
 						data: {
 							validation: false,
+							validationInfo: validateArray,
 							exitCode: result.childProcess.exitCode,
 							stdOutput: result.stdout || 'Unavailable',
 							stdError: result.stderr || 'Unavailable'
