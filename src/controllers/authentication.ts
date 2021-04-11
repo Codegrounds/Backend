@@ -45,9 +45,31 @@ router.post('/signup', async (ctx: Context) => {
 	}
 })
 
+router.post('/logout', async (ctx: Context) => {
+	if (ctx.session!.loggedIn) {
+		ctx.session = null
+		ctx.status = 200
+		ctx.body = {
+			message: 'Logged Out',
+			date: new Date().toLocaleString()
+		}
+	} else {
+		ctx.session = null
+		ctx.status = 401
+		ctx.body = {
+			message: 'Unauthorized',
+			date: new Date().toLocaleString()
+		}
+	}
+})
+
 router.post('/test', async (ctx: Context) => {
 	if (ctx.session!.loggedIn) {
-		console.log('nfr')
+		ctx.status = 200
+		ctx.body = {
+			message: 'Signed In',
+			date: new Date().toLocaleString()
+		}
 	}
 })
 

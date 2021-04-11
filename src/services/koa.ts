@@ -18,8 +18,7 @@ export const start = async () => {
 	app.use(Logger())
 	app.use(Session({
 		secure: false,
-		sameSite: false,
-		httpOnly: false
+		sameSite: false
 	}, app))
 
 	const router = new Router();
