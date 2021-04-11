@@ -5,6 +5,18 @@ import { getConnection, getRepository } from 'typeorm';
 
 const router = new Router()
 
+router.get('/all', async (ctx: Context) => {
+	const data = await getConnection().manager.find(Lesson)
+	ctx.status = 200
+	ctx.body = {
+		message: 'Successful: Lesson Found',
+		date: new Date().toLocaleString(),
+		data: data.map((lookup) => ({
+			id: lookup.lesson_id
+		}))
+	}
+})
+
 router.get('/', async (ctx: Context) => {
 	if (!ctx.request.query.id) {
 		ctx.status = 422
